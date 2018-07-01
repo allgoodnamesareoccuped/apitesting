@@ -1,18 +1,18 @@
 package jackson;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
+import org.junit.Test;
+import pojo.Category;
+import pojo.Promotion;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import pojo.Category;
-import pojo.Promotion;
 
 /**
  * Created by bjorn on 30/06/18.
@@ -27,28 +27,29 @@ public class jacksonTest {
             Category pojo = objectMapper.readValue(url, Category.class);
             Assert.assertEquals(true, pojo.getCanRelist());
             Assert.assertEquals("Carbon credits",pojo.getName());
-            Iterator<Promotion> iter = pojo.getPromotions().iterator();
-            String description = "";
-            while(iter.hasNext()) {
-                Promotion promotion = iter.next();
-                if(promotion.getName().equalsIgnoreCase("Gallery")){
-                    description = promotion.getDescription();
-                }
-            }
-            Assert.assertTrue("", description.contains("2x larger image"));
-
+            Assert.assertTrue("",
+                    getDescriptionByName(pojo.getPromotions(),"Gallery").contains("2x larger image"));
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JsonParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JsonMappingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+
+    }
+    private String getDescriptionByName(List<Promotion> promotions, String name) {
+        String description = "";
+        Iterator<Promotion> iter = promotions.iterator();
+        while(iter.hasNext()){
+            Promotion promotion = iter.next();
+            if(promotion.getName().equalsIgnoreCase(name)){
+                description = promotion.getDescription();
+            }
+        }
+        return description;
     }
 }

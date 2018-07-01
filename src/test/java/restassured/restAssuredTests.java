@@ -1,17 +1,15 @@
 package restassured;
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
-
-import org.json.JSONString;
+import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
