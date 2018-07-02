@@ -75,12 +75,12 @@ public class restAssuredTests {
         Assert.assertTrue("", jsonPath.get("Promotions.find {it.Name == 'Gallery'}.Description").toString().contains("2x larger image"));
     }
 
-    private Map<String,?> getMapFromList(ArrayList<Map<String,?>> list, String ss) {
+    private Map<String,?> getMapFromList(ArrayList<Map<String,?>> list, String value) {
         Map<String,?> foundMap = new HashMap<String, String>();
         outerloop:
         for(Map<String,?> map: list) {
             for (Map.Entry<String,?> entry : map.entrySet()) {
-                if (ss.equalsIgnoreCase(entry.getValue().toString())) {
+                if (value.equalsIgnoreCase(entry.getValue().toString())) {
                     foundMap =  map;
                     break outerloop;
                 }

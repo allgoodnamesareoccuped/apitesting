@@ -1,8 +1,6 @@
 package pojo;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -383,6 +381,17 @@ public class Category {
         }
         Category rhs = ((Category) other);
         return new EqualsBuilder().append(categoryId, rhs.categoryId).append(name, rhs.name).append(path, rhs.path).append(canListAuctions, rhs.canListAuctions).append(canListClassifieds, rhs.canListClassifieds).append(canRelist, rhs.canRelist).append(legalNotice, rhs.legalNotice).append(defaultDuration, rhs.defaultDuration).append(allowedDurations, rhs.allowedDurations).append(fees, rhs.fees).append(freePhotoCount, rhs.freePhotoCount).append(maximumPhotoCount, rhs.maximumPhotoCount).append(isFreeToRelist, rhs.isFreeToRelist).append(promotions, rhs.promotions).append(embeddedContentOptions, rhs.embeddedContentOptions).append(maximumTitleLength, rhs.maximumTitleLength).append(areaOfBusiness, rhs.areaOfBusiness).append(defaultRelistDuration, rhs.defaultRelistDuration).append(additionalProperties, rhs.additionalProperties).isEquals();
+    }
+    public String getDescriptionByName(String name) {
+        String description = "";
+        Iterator<Promotion> iter = getPromotions().iterator();
+        while(iter.hasNext()){
+            Promotion promotion = iter.next();
+            if(promotion.getName().equalsIgnoreCase(name)){
+                description = promotion.getDescription();
+            }
+        }
+        return description;
     }
 
 }

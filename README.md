@@ -20,8 +20,9 @@ jaywayRestAssuredTests - explore different ways of testing api with the use of j
 
 jacksonTest - explore how to use Jackson and POJO's
 1. use objectMapper to map to POJO's 
+2. use JsonNode to find values from Json
 
-Note: Jackson is definitely the fastest way to run the tests.
+Note: Jackson and objectMapper is definitely the fastest way to run the tests.
 
 
 After investigating different options I think that for readability and maintenance I would recommend using POJO's 
